@@ -1,3 +1,9 @@
+create database QueryViewer
+GO
+
+use QueryViewer
+GO
+
 create table Person (
 	id INT,
 	first_name VARCHAR(50),
