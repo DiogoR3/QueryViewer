@@ -111,26 +111,20 @@
 </template>
 
 <script lang="ts">
-import { Options, Vue } from "vue-class-component";
-import axios from 'axios'
-
-@Options({
-  props: {
-    msg: string,
-  },
-})
+import { Vue } from "vue-class-component";
+import api from "../api";
 
 export default class HelloWorld extends Vue {
+  msg: string = "Welcome to Vue!";
+
   mounted() {
-    axios.get("weatherforecast").then((response) => {
-      console.log(response.data)
-    })
+    api.WeatherForecast.getAll().then((response) => {
+      console.log(response.data);
+    });
   }
-  msg!: string;
 }
 </script>
 
-<!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
 h3 {
   margin: 40px 0 0;
