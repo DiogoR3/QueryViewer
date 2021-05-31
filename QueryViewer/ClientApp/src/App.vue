@@ -45,9 +45,18 @@
 
 <script lang="ts">
 import Vue from 'vue';
+import api from '@/api'
 
 export default Vue.extend({
-  name: 'App',
+  name: 'App' as string,
+
+  mounted() {
+    console.log(1)
+    api.Query.getAllQueries()
+    .then(resp => console.log(resp))
+    .catch(err => console.log(err))
+    
+  },
 
   data: () => ({
     //
