@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using QueryViewer.Services;
 
 namespace QueryViewer
 {
@@ -28,6 +29,8 @@ namespace QueryViewer
             });
 
             services.Configure<Configuration>(Configuration.GetSection(nameof(QueryViewer.Configuration)));
+
+            services.AddScoped<DatabaseQuery>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

@@ -1,6 +1,11 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
+using QueryViewer.Services;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
 
 namespace QueryViewer.Controllers
 {
@@ -9,18 +14,33 @@ namespace QueryViewer.Controllers
     public class QueryController : ControllerBase
     {
         private readonly ILogger<QueryController> Logger;
-        private readonly Configuration Configuration;
+        private readonly DatabaseQuery DatabaseQuery;
 
-        public QueryController(ILogger<QueryController> logger, IOptions<Configuration> configuration)
+        public QueryController(ILogger<QueryController> logger, DatabaseQuery databaseQuery)
         {
             Logger = logger;
-            Configuration = configuration.Value;
+            DatabaseQuery = databaseQuery;
         }
 
         [HttpGet]
-        public Configuration GetQueries()
+        public IEnumerable<string> GetQueries()
         {
-            return Configuration;
+            return DatabaseQuery.GetQueriesNames();
+        }
+
+        [HttpGet]
+        [Route("{id}")]
+        public async Task<ActionResult> GetQueryResultById(int id)
+        {
+            try
+            {
+                (string[] headers, string[][] rows) = await DatabaseQuery.GetQueryResult(id);
+                return new JsonResult(new { headers, rows });
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, ex.Message);
+            }
         }
     }
 }
