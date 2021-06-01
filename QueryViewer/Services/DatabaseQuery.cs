@@ -74,9 +74,17 @@ namespace QueryViewer.Services
         private static IEnumerable<object> GetRows(DataRowCollection dataRowCollection)
         {
             List<object> rowsList = new();
+            List<object> rowsItem;
 
             foreach (DataRow dataRow in dataRowCollection)
-                rowsList.Add(dataRow.ItemArray);
+            {
+                rowsItem = new();
+
+                foreach (object obj in dataRow.ItemArray)
+                    rowsItem.Add(obj?.ToString());
+
+                rowsList.Add(rowsItem);
+            }
 
             return rowsList;
         }
