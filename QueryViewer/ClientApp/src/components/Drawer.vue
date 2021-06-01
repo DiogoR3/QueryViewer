@@ -1,8 +1,8 @@
 <template>
-  <v-card width="256" class="mx-auto">
-    <v-navigation-drawer permanent width="260">
+  <v-card>
+    <v-navigation-drawer permanent width="100%">
       <v-list>
-        <v-list-item link>
+        <v-list-item link href="mailto:diogo.rodcarreira@hotmail.com">
           <v-list-item-content>
             <v-list-item-title class="title">
               Diogo Carreira
@@ -43,6 +43,5 @@ export default Vue.extend({
     selected: 0 as number
   }),
 });
-
 
 </script>
