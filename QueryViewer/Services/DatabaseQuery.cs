@@ -32,7 +32,7 @@ namespace QueryViewer.Services
             return Queries.Select(query => query.Name).ToArray();
         }
 
-        public async Task<(string[], string[][])> GetQueryResult(int queryId)
+        public async Task<(string[], IEnumerable<object>)> GetQueryResult(int queryId)
         {
             Query query = GetQuery(queryId);
 
@@ -42,7 +42,7 @@ namespace QueryViewer.Services
             DataTable dataTable = await GetDataTable(query);
 
             string[] columns = GetColumns(dataTable.Columns);
-            string[][] rows = GetRows(dataTable.Rows);
+            IEnumerable<object> rows = GetRows(dataTable.Rows);
 
             return (columns, rows);
         }
@@ -64,21 +64,21 @@ namespace QueryViewer.Services
         private static string[] GetColumns(DataColumnCollection dataColumnCollection)
         {
             List<string> columns = new();
-
+            
             foreach (DataColumn column in dataColumnCollection)
                 columns.Add(column.ColumnName);
 
             return columns.ToArray();
         }
 
-        private static string[][] GetRows(DataRowCollection dataRowCollection)
+        private static IEnumerable<object> GetRows(DataRowCollection dataRowCollection)
         {
-            List<string[]> rowsList = new();
+            List<object> rowsList = new();
 
             foreach (DataRow dataRow in dataRowCollection)
-                rowsList.Add(dataRow.ItemArray.Select(item => item.ToString()).ToArray());
+                rowsList.Add(dataRow.ItemArray);
 
-            return rowsList.ToArray();
+            return rowsList;
         }
     }
 }

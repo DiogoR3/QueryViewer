@@ -1,5 +1,8 @@
-import { getAllQueries, getQueryResult } from '@/api/query'
+import query from '@/api/query'
+import type { QueryNames, QueryResult } from '@/api/query'
 
 export default {
-    Query: { getAllQueries, getQueryResult }
+    Query: {...query}
 }
+
+export type { QueryNames, QueryResult }

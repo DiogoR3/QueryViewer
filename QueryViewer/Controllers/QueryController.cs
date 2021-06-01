@@ -34,7 +34,7 @@ namespace QueryViewer.Controllers
         {
             try
             {
-                (string[] headers, string[][] rows) = await DatabaseQuery.GetQueryResult(id);
+                (string[] headers, IEnumerable<object> rows) = await DatabaseQuery.GetQueryResult(id);
                 return new JsonResult(new { headers, rows });
             }
             catch (Exception ex)

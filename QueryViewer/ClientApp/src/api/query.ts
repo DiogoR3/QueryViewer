@@ -2,20 +2,25 @@ import axios, { AxiosResponse } from 'axios'
 
 const controller: string = 'query'
 
-export function getAllQueries(): Promise<AxiosResponse<QueryNames>> {
+function getAllQueries(): Promise<AxiosResponse<QueryNames>> {
     return axios.get(controller)
 }
 
-export function getQueryResult(id: number): Promise<AxiosResponse<QueryResult>> {
+function getQueryResult(id: number): Promise<AxiosResponse<QueryResult>> {
     return axios.get(`${controller}/${id}`)
 }
 
-interface QueryNames {
+export interface QueryNames {
     name: string[]
 }
 
-interface QueryResult {
+export interface QueryResult {
     headers: string[],
     rows: string[][]
 }
 
+export default {
+    getAllQueries,
+    getQueryResult
+}
+ 
