@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 namespace QueryViewer.Controllers
 {
     [ApiController]
-    [Route("[controller]")]
+    [Route("api/[controller]")]
     public class QueryController : ControllerBase
     {
         private readonly ILogger<QueryController> Logger;

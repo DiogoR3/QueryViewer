@@ -1,7 +1,6 @@
 module.exports = {
     lintOnSave: false,
-    publicPath: '',
-
+    publicPath: process.env.BASE_URL,
     transpileDependencies: [
         'vuetify'
     ]

@@ -1,6 +1,6 @@
 import axios, { AxiosResponse } from 'axios'
 
-const controller: string = 'query'
+const controller: string = process.env.BASE_URL + 'api/query'
 
 function getAllQueries(): Promise<AxiosResponse<QueryNames>> {
     return axios.get(controller)
