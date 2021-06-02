@@ -4,7 +4,7 @@
       <v-list-item link href="mailto:diogo.rodcarreira@hotmail.com">
         <v-list-item-content>
           <v-list-item-title class="title"> Query Viewer </v-list-item-title>
-          <v-list-item-subtitle>dev.br@vocalcom.com</v-list-item-subtitle>
+          <v-list-item-subtitle>diogo.rodcarreira@hotmail.com</v-list-item-subtitle>
         </v-list-item-content>
       </v-list-item>
 
